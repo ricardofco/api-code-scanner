@@ -23,7 +23,7 @@ import {ProductoRepository} from '../repositories';
 export class ProductoController {
   constructor(
     @repository(ProductoRepository)
-    public productoRepository : ProductoRepository,
+    public productoRepository: ProductoRepository,
   ) {}
 
   @post('/productos', {
@@ -40,7 +40,6 @@ export class ProductoController {
         'application/json': {
           schema: getModelSchemaRef(Producto, {
             title: 'NewProducto',
-            exclude: ['id'],
           }),
         },
       },
@@ -59,7 +58,8 @@ export class ProductoController {
     },
   })
   async count(
-    @param.query.object('where', getWhereSchemaFor(Producto)) where?: Where<Producto>,
+    @param.query.object('where', getWhereSchemaFor(Producto))
+    where?: Where<Producto>,
   ): Promise<Count> {
     return this.productoRepository.count(where);
   }
@@ -80,7 +80,8 @@ export class ProductoController {
     },
   })
   async find(
-    @param.query.object('filter', getFilterSchemaFor(Producto)) filter?: Filter<Producto>,
+    @param.query.object('filter', getFilterSchemaFor(Producto))
+    filter?: Filter<Producto>,
   ): Promise<Producto[]> {
     return this.productoRepository.find(filter);
   }
@@ -102,7 +103,8 @@ export class ProductoController {
       },
     })
     producto: Producto,
-    @param.query.object('where', getWhereSchemaFor(Producto)) where?: Where<Producto>,
+    @param.query.object('where', getWhereSchemaFor(Producto))
+    where?: Where<Producto>,
   ): Promise<Count> {
     return this.productoRepository.updateAll(producto, where);
   }
@@ -120,8 +122,9 @@ export class ProductoController {
     },
   })
   async findById(
-    @param.path.number('id') id: number,
-    @param.query.object('filter', getFilterSchemaFor(Producto)) filter?: Filter<Producto>
+    @param.path.string('id') id: string,
+    @param.query.object('filter', getFilterSchemaFor(Producto))
+    filter?: Filter<Producto>,
   ): Promise<Producto> {
     return this.productoRepository.findById(id, filter);
   }
@@ -134,7 +137,7 @@ export class ProductoController {
     },
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -155,7 +158,7 @@ export class ProductoController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody() producto: Producto,
   ): Promise<void> {
     await this.productoRepository.replaceById(id, producto);
@@ -168,7 +171,7 @@ export class ProductoController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.productoRepository.deleteById(id);
   }
 }
