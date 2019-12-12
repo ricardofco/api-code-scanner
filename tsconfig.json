@@ -5,5 +5,11 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+    "./plugins/**/*",
+    "./typings/**/*",
+    "definitions",
+    "./dist/**/*" // This is what fixed it!
+]
 }
