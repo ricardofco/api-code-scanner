@@ -2,10 +2,10 @@
   "name": "db",
   "connector": "mssql",
   "url": "",
-  "host": "servertec.database.windows.net",
+  "host": "",
   "port": 1433,
-  "user": "victor",
-  "password": "tecAdmin1",
+  "user": "",
+  "password": "",
   "database": "super",
   "options": {
     "encrypt": true
